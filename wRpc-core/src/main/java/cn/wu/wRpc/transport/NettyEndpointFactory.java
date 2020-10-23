@@ -2,10 +2,11 @@ package cn.wu.wRpc.transport;
 
 import cn.wu.wRpc.rpc.URL;
 
-public class NettyEndpointFactory implements EndpointFactory {
+public class NettyEndpointFactory extends AbstractEndpointFactory {
+
 
     @Override
-    public Server createServer(URL url, MessageHandler messageHandler) {
-        return null;
+    protected Server doCreateServer(URL url, MessageHandler messageHandler) {
+        return new NettyServer(url, messageHandler);
     }
 }

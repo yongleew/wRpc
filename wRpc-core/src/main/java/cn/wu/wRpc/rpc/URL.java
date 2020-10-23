@@ -25,4 +25,12 @@ public class URL {
     public String toString() {
         return getUri();
     }
+
+    public String getServerPortStr() {
+        return host + ":" + port;
+    }
+
+    public URL createCopy() {
+        return new URL(protocol, host, port, path);
+    }
 }

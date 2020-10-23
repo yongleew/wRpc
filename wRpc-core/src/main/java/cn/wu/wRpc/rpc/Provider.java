@@ -12,4 +12,6 @@ public interface Provider<T> {
     Method lookupMethod(String methodName, String methodDesc);
 
     T getImpl();
+
+    URL getUrl();
 }

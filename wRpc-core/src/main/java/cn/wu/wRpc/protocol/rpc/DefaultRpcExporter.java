@@ -3,6 +3,7 @@ package cn.wu.wRpc.protocol.rpc;
 import cn.wu.wRpc.rpc.Exporter;
 import cn.wu.wRpc.rpc.Provider;
 import cn.wu.wRpc.rpc.URL;
+import cn.wu.wRpc.transport.ProviderMessageRouter;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +20,12 @@ public class DefaultRpcExporter<T> implements Exporter<T> {
         this.url = url;
         this.ipPort2RequestRouter = ipPort2RequestRouter;
         this.exporterMap = exporterMap;
+
+        ProviderMessageRouter requestRouter = initRequestRouter(url);
+    }
+
+    private ProviderMessageRouter initRequestRouter(URL url) {
+        return null;
     }
 
     @Override

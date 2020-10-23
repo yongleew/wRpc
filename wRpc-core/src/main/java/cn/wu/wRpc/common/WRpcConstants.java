@@ -1,5 +1,8 @@
 package cn.wu.wRpc.common;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,14 +14,15 @@ public class WRpcConstants {
     public static final String PROTOCOL_WRPC = "wrpc";
     public static final int PROTOCOL_WRPC_PORT = 8088;
 
-    public static void main(String[] args) {
-        String s = "a\b";
+    private static String driverName =
+            "org.apache.hive.jdbc.HiveDriver";
 
-        Pattern compile = Pattern.compile("\\\\");
-        String[] split = compile.split(s);
-        for (String s1 : split) {
-
-            System.out.println(s1);
+    public static void main(String[] args) throws SQLException {
+        try {
+            Class.forName(driverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
     }
 }

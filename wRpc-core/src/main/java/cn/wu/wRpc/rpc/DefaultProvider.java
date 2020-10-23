@@ -27,4 +27,9 @@ public class DefaultProvider<T> implements Provider<T>  {
     public T getImpl() {
         return ref;
     }
+
+    @Override
+    public URL getUrl() {
+        return this.url;
+    }
 }
