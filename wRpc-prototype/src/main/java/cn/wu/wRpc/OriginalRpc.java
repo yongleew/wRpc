@@ -12,8 +12,8 @@ import java.net.Socket;
 /**
  * 参考自：https://www.iteye.com/blog/javatar-1123915，https://www.cnkirito.moe/easy-know-rpc/
  *
- * 1. socket IO完成service和client的通信
- * 2. ObjectStream完成参数的序列化
+ * 1. socket IO完成service和client的通信  ->   netty通信
+ * 2. ObjectStream完成参数的序列化        ->    json或protobuf
  * 3. jdk动态代理完成方法的远程调用
  *
  */
