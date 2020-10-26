@@ -8,11 +8,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * 处理端口的分发，具体服务的分发
- */
+
 public abstract class AbstractEndpointFactory implements EndpointFactory {
 
+    /**
+     * 记录ipPort到server的映射
+     */
     protected Map<String, Server> ipPort2Server = new HashMap<>();
     protected Map<Server, Set<String>> server2Url = new HashMap<>();
 
@@ -32,7 +33,6 @@ public abstract class AbstractEndpointFactory implements EndpointFactory {
             saveEndpoint2Urls(server, protocolKey);
             return server;
         }
-
     }
 
     protected void saveEndpoint2Urls(Server server, String protocolKey) {
@@ -46,4 +46,5 @@ public abstract class AbstractEndpointFactory implements EndpointFactory {
     };
 
     protected abstract Server doCreateServer(URL url, MessageHandler messageHandler);
+
 }

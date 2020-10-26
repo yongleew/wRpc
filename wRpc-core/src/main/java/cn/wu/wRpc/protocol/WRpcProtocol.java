@@ -35,6 +35,7 @@ public class WRpcProtocol implements Protocol {
             }
 
             exporter = createExporter(provider, url);
+            exporter.init();
 
             exporterMap.put(protocolKey, exporter);
 
