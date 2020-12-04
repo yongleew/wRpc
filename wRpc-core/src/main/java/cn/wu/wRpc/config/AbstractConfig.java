@@ -12,6 +12,7 @@ public class AbstractConfig<T> {
     protected Class<T> interfaceClass;
     protected String host = DEFAULT_Host;
     protected int port = DEFAULT_PORT;
+    protected String registryAddress;
 
     public String getConfigKey() {
         return host + ":" + port + "/" + interfaceClass;
@@ -19,5 +20,17 @@ public class AbstractConfig<T> {
 
     public String getIpPortStr() {
         return host + ":" + port;
+    }
+
+    public String getServiceUrl() {
+        return "wRpc://" + host + ":" + port + "/" + interfaceClass.getName();
+    }
+
+    public String getPath() {
+        return interfaceClass.getName();
+    }
+
+    public String getRegistryUri() {
+        return "zookeeper://" + registryAddress + "/" + interfaceClass.getName();
     }
 }
