@@ -2,6 +2,8 @@ package cn.wu.wRpc.cluster;
 
 import cn.wu.wRpc.config.AbstractConfig;
 import cn.wu.wRpc.rpc.Referer;
+import cn.wu.wRpc.rpc.Request;
+import cn.wu.wRpc.rpc.Response;
 
 import java.util.List;
 
@@ -19,4 +21,6 @@ public interface Cluster<T> {
     List<Referer<T>> getReferers();
 
     LoadBalance<T> getLoadBalance();
+
+    Response call(Request request);
 }

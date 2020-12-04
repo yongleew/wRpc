@@ -4,7 +4,6 @@ import cn.wu.wRpc.cluster.support.ClusterSupport;
 import cn.wu.wRpc.config.AbstractConfig;
 import cn.wu.wRpc.config.RefererConfig;
 import cn.wu.wRpc.protocol.DefaultProtocol;
-import cn.wu.wRpc.protocol.DefaultReferer;
 import cn.wu.wRpc.proxy.ProxyFactory;
 import cn.wu.wRpc.registry.Registry;
 import cn.wu.wRpc.registry.RegistryFactory;
@@ -36,13 +35,14 @@ public class SimpleConfigHandler {
     public <T> T refer(RefererConfig<T> config) {
         DefaultProtocol protocol = DefaultProtocol.SINGLE_WRPC_PROTOCOL;
         Referer<T> refer = protocol.refer(config);
+        ClusterSupport<T> clusterSupport = buildClusterSupport(config);
+
         return ProxyFactory.getProxy(config, refer);
     }
 
-    public <T> ClusterSupport<T> buildClusterSupport( RefererConfig<T> config) {
+    public <T> ClusterSupport<T> buildClusterSupport(RefererConfig<T> config) {
         ClusterSupport<T> clusterSupport = new ClusterSupport<T>(config);
         clusterSupport.init();
-
         return clusterSupport;
     }
 }
