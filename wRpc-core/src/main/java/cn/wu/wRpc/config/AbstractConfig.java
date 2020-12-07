@@ -2,6 +2,8 @@ package cn.wu.wRpc.config;
 
 import lombok.Data;
 
+import java.util.Objects;
+
 @Data
 public class AbstractConfig<T> {
 
@@ -32,5 +34,21 @@ public class AbstractConfig<T> {
 
     public String getRegistryUri() {
         return "zookeeper://" + registryAddress + "/" + interfaceClass.getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractConfig<?> that = (AbstractConfig<?>) o;
+        return port == that.port &&
+                Objects.equals(interfaceClass, that.interfaceClass) &&
+                Objects.equals(host, that.host) &&
+                Objects.equals(registryAddress, that.registryAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(interfaceClass, host, port, registryAddress);
     }
 }

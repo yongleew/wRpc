@@ -1,5 +1,6 @@
 package cn.wu.wRpc.config.handler;
 
+import cn.wu.wRpc.cluster.Cluster;
 import cn.wu.wRpc.cluster.support.ClusterSupport;
 import cn.wu.wRpc.config.AbstractConfig;
 import cn.wu.wRpc.config.RefererConfig;
@@ -35,8 +36,6 @@ public class SimpleConfigHandler {
     public <T> T refer(RefererConfig<T> config) {
         DefaultProtocol protocol = DefaultProtocol.SINGLE_WRPC_PROTOCOL;
         Referer<T> refer = protocol.refer(config);
-        ClusterSupport<T> clusterSupport = buildClusterSupport(config);
-
         return ProxyFactory.getProxy(config, refer);
     }
 
@@ -44,5 +43,9 @@ public class SimpleConfigHandler {
         ClusterSupport<T> clusterSupport = new ClusterSupport<T>(config);
         clusterSupport.init();
         return clusterSupport;
+    }
+
+    public <T> T refer(RefererConfig<T> config, Cluster<T> cluster) {
+        return ProxyFactory.getProxy(config, cluster);
     }
 }

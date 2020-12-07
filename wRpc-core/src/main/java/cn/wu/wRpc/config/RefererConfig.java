@@ -36,10 +36,10 @@ public class RefererConfig<T> extends AbstractConfig<T> {
 
         ClusterSupport<T> clusterSupport = createClusterSupport(this, configHandler);
 
-        ref = configHandler.refer(this);
+        ref = configHandler.refer(this, clusterSupport.getCluster());
     }
 
-    private ClusterSupport createClusterSupport(RefererConfig<T> config, SimpleConfigHandler configHandler) {
+    private ClusterSupport<T> createClusterSupport(RefererConfig<T> config, SimpleConfigHandler configHandler) {
         if (config.getRegistryAddress() == null) {
             throw new IllegalStateException("No registry to reference");
         }

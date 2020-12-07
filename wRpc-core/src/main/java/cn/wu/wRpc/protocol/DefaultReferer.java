@@ -24,5 +24,12 @@ public class DefaultReferer<T> implements Referer<T> {
     @Override
     public void init() {
         client.open();
+        //todo 连接池
+        //initPool();
+    }
+
+    @Override
+    public AbstractConfig<T> getServiceConfig() {
+        return config;
     }
 }
